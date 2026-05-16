@@ -464,11 +464,11 @@
   <footer>
     <div class="wrap">
       <span class="footer-copy">// Jason &mdash; Cape Town, ZA</span>
-      <div class="footer-links">
-        <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
-        <a href="mailto:your@email.com">Email</a>
-      </div>
+       <div class="footer-links">
+         <a href="https://github.com/JUngererNZ" target="_blank">GitHub</a>
+         <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+         <a href="mailto:your@email.com">Email</a>
+       </div>
     </div>
   </footer>
 
@@ -489,8 +489,8 @@
        repoGrid.innerHTML = '<p class="repo-card reveal">Loading repositories...</p>';
 
        try {
-         // Replace with your actual GitHub username
-         const username = 'YOUR_GITHUB_USERNAME'; 
+        // Use the GitHub username from the nav link
+        const username = 'JUngererNZ';
          const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
          
          if (!response.ok) {
