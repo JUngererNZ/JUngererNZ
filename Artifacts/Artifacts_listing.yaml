@@ -1,0 +1,47 @@
+generated_at: '2026-05-13T19:30:18'
+source: C:\Users\Jason\Projects\JUngererNZ\Artifacts
+tree:
+  name: Artifacts
+  path: C:\Users\Jason\Projects\JUngererNZ\Artifacts
+  type: directory
+  children:
+  - name: output
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\output
+    type: directory
+    children: []
+  - name: christchurch_blueprint_20260513_073949.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\christchurch_blueprint_20260513_073949.png
+    type: file
+    size_bytes: 6976315
+  - name: christchurch_heatwave_20260513_073920.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\christchurch_heatwave_20260513_073920.png
+    type: file
+    size_bytes: 6796654
+  - name: christchurch_midnight_blue_20260513_073837.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\christchurch_midnight_blue_20260513_073837.png
+    type: file
+    size_bytes: 6536420
+  - name: durban_midnight_blue_20260513_100417.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\durban_midnight_blue_20260513_100417.png
+    type: file
+    size_bytes: 7969494
+  - name: folder_listing.py
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\folder_listing.py
+    type: file
+    size_bytes: 2126
+  - name: franklin_midnight_blue_20260513_074252.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\franklin_midnight_blue_20260513_074252.png
+    type: file
+    size_bytes: 3776905
+  - name: henderson_massey_midnight_blue_20260513_074208.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\henderson_massey_midnight_blue_20260513_074208.png
+    type: file
+    size_bytes: 5076466
+  - name: umhlathuze_local_municipality_midnight_blue_20260513_100510.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\umhlathuze_local_municipality_midnight_blue_20260513_100510.png
+    type: file
+    size_bytes: 2623313
+  - name: waitemat_midnight_blue_20260513_074052.png
+    path: C:\Users\Jason\Projects\JUngererNZ\Artifacts\waitemat_midnight_blue_20260513_074052.png
+    type: file
+    size_bytes: 7334750
