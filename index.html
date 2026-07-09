@@ -10,14 +10,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0d0f14;
-      --surface:  #13161e;
-      --border:   #1e2230;
-      --muted:    #3a3f54;
+      --bg:       #0f111a;
+      --surface:  #171b27;
+      --border:   #262b3d;
+      --muted:    #525b7a;
       --text:     #c8cdd8;
       --bright:   #eef0f5;
-      --accent:   #4af0a8;
-      --accent2:  #7b9cff;
+      --accent:   #ff6b8b; /* Warm, playful coral pink */
+      --accent2:  #4af0a8; /* Crisp terminal green */
+      --accent3:  #7b9cff; /* Retro arcade blue */
       --mono:     'Space Mono', monospace;
       --sans:     'Syne', sans-serif;
     }
@@ -44,7 +45,7 @@
       opacity: .4;
     }
 
-    /* ── Grid lines ── */
+    /* ── Playful background grid ── */
     body::after {
       content: '';
       position: fixed;
@@ -52,10 +53,10 @@
       background-image:
         linear-gradient(var(--border) 1px, transparent 1px),
         linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background-size: 50px 50px;
       pointer-events: none;
       z-index: 0;
-      opacity: .35;
+      opacity: .25;
     }
 
     .wrap {
@@ -72,7 +73,7 @@
       top: 0;
       z-index: 100;
       padding: 18px 0;
-      background: rgba(13,15,20,.82);
+      background: rgba(15, 17, 26, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -83,112 +84,125 @@
     }
     .nav-logo {
       font-family: var(--mono);
-      font-size: .78rem;
+      font-size: .85rem;
+      font-weight: 700;
       color: var(--accent);
-      letter-spacing: .06em;
+      letter-spacing: .02em;
     }
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       list-style: none;
     }
     .nav-links a {
       font-family: var(--mono);
-      font-size: .72rem;
-      color: var(--muted);
+      font-size: .75rem;
+      color: var(--text);
       text-decoration: none;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      letter-spacing: .02em;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--accent2); }
 
     /* ── Hero ── */
     .hero {
-      padding: 100px 0 80px;
+      padding: 90px 0 60px;
     }
     .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--mono);
-      font-size: .72rem;
-      color: var(--accent);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-      opacity: 0;
-      animation: fadeUp .5s .1s forwards;
+      font-size: .75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 30px;
+      color: var(--accent2);
+      margin-bottom: 28px;
+    }
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--accent2);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent2);
+      animation: pulse 2s infinite;
     }
     .hero h1 {
       font-family: var(--sans);
       font-weight: 800;
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
       color: var(--bright);
-      line-height: 1.08;
+      line-height: 1.15;
       letter-spacing: -.02em;
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp .55s .2s forwards;
+      margin-bottom: 24px;
     }
     .hero h1 em {
       font-style: normal;
       color: var(--accent);
+      position: relative;
+    }
+    /* Flashing nerdy terminal cursor */
+    .hero h1 em::after {
+      content: '_';
+      color: var(--accent3);
+      animation: blink 1s step-start infinite;
     }
     .hero-bio {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--text);
-      max-width: 600px;
-      line-height: 1.75;
-      margin-bottom: 44px;
-      opacity: 0;
-      animation: fadeUp .55s .3s forwards;
+      max-width: 640px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .hero-bio strong {
+      color: var(--bright);
     }
     .hero-ctas {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp .55s .4s forwards;
     }
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 11px 22px;
+      gap: 10px;
+      padding: 12px 24px;
       font-family: var(--mono);
-      font-size: .74rem;
-      letter-spacing: .07em;
+      font-size: .8rem;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 4px;
-      transition: all .2s;
+      border-radius: 12px; /* Smoother, friendly corners */
+      transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .btn-primary {
       background: var(--accent);
       color: #0a0c10;
-      font-weight: 700;
     }
     .btn-primary:hover {
-      background: #6af5b8;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(74,240,168,.25);
+      background: #ff8fa7;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(255, 107, 139, 0.3);
     }
     .btn-ghost {
-      border: 1px solid var(--border);
-      color: var(--text);
+      border: 2px solid var(--border);
+      color: var(--bright);
     }
     .btn-ghost:hover {
-      border-color: var(--accent2);
-      color: var(--accent2);
-      transform: translateY(-2px);
+      border-color: var(--accent3);
+      color: var(--accent3);
+      transform: translateY(-3px);
     }
 
     /* ── Section base ── */
-    section { padding: 72px 0; }
+    section { padding: 60px 0; }
     .section-label {
       font-family: var(--mono);
-      font-size: .68rem;
-      color: var(--muted);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 38px;
+      font-size: .8rem;
+      color: var(--accent3);
+      font-weight: 700;
+      margin-bottom: 32px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -196,87 +210,84 @@
     .section-label::after {
       content: '';
       flex: 1;
-      height: 1px;
+      height: 2px;
       background: var(--border);
     }
 
     /* ── Stack / Skills ── */
     .stack-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 12px;
     }
     .stack-pill {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 9px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
       font-family: var(--mono);
-      font-size: .72rem;
+      font-size: .78rem;
+      font-weight: 700;
       color: var(--text);
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: border-color .2s, color .2s;
+      gap: 10px;
+      transition: all .2s ease;
     }
-    .stack-pill:hover { border-color: var(--accent2); color: var(--bright); }
+    .stack-pill:hover { 
+      border-color: var(--accent); 
+      color: var(--bright);
+      transform: translateY(-2px);
+    }
     .stack-pill .dot {
-      width: 6px; height: 6px;
+      width: 8px; height: 8px;
       border-radius: 50%;
-      background: var(--accent2);
+      background: var(--accent3);
       flex-shrink: 0;
     }
-    .stack-pill .dot.green { background: var(--accent); }
-    .stack-pill .dot.yellow { background: #f0c94a; }
+    .stack-pill .dot.green { background: var(--accent2); }
+    .stack-pill .dot.orange { background: #ff9f43; }
 
     /* ── Portfolio cards ── */
     .repo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 20px;
     }
     @media (max-width: 600px) { .repo-grid { grid-template-columns: 1fr; } }
 
     .repo-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 24px;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      transition: border-color .2s, transform .2s, box-shadow .2s;
+      gap: 12px;
+      transition: all .25s ease;
       position: relative;
-      overflow: hidden;
-    }
-    .repo-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .3s;
     }
     .repo-card:hover {
-      border-color: var(--muted);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.5);
+      border-color: var(--accent3);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     }
-    .repo-card:hover::before { transform: scaleX(1); }
 
     .repo-name {
       font-family: var(--mono);
-      font-size: .82rem;
-      color: var(--accent2);
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--bright);
       display: flex;
       align-items: center;
       gap: 8px;
     }
+    .repo-card:hover .repo-name {
+      color: var(--accent3);
+    }
     .repo-desc {
-      font-size: .88rem;
+      font-size: .9rem;
       color: var(--text);
       line-height: 1.6;
       flex: 1;
@@ -285,21 +296,20 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .tag {
       font-family: var(--mono);
-      font-size: .62rem;
-      padding: 3px 8px;
-      border-radius: 3px;
+      font-size: .65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
       background: rgba(123,156,255,.1);
-      color: var(--accent2);
-      border: 1px solid rgba(123,156,255,.2);
+      color: var(--accent3);
     }
     .tag.green {
-      background: rgba(74,240,168,.08);
-      color: var(--accent);
-      border-color: rgba(74,240,168,.2);
+      background: rgba(74,240,168,.1);
+      color: var(--accent2);
     }
 
     /* ── About strip ── */
@@ -312,20 +322,20 @@
 
     .about-item {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 20px 22px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
     }
     .about-item-label {
       font-family: var(--mono);
-      font-size: .64rem;
+      font-size: .7rem;
       color: var(--muted);
-      letter-spacing: .1em;
+      font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
     .about-item-value {
-      font-size: .92rem;
+      font-size: .95rem;
       color: var(--bright);
       font-weight: 600;
     }
@@ -333,8 +343,9 @@
     /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 36px 0;
-      margin-top: 40px;
+      padding: 40px 0;
+      margin-top: 60px;
+      background: #0a0c12;
     }
     footer .wrap {
       display: flex;
@@ -345,7 +356,7 @@
     }
     .footer-copy {
       font-family: var(--mono);
-      font-size: .68rem;
+      font-size: .75rem;
       color: var(--muted);
     }
     .footer-links {
@@ -354,25 +365,26 @@
     }
     .footer-links a {
       font-family: var(--mono);
-      font-size: .68rem;
-      color: var(--muted);
+      font-size: .75rem;
+      color: var(--text);
       text-decoration: none;
       transition: color .2s;
     }
     .footer-links a:hover { color: var(--accent); }
 
-    /* ── Divider ── */
-    hr { border: none; border-top: 1px solid var(--border); }
-
     /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74,240,168, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74,240,168, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74,240,168, 0); }
     }
     .reveal {
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity .5s, transform .5s;
+      transform: translateY(20px);
+      transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), transform .6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .reveal.visible {
       opacity: 1;
@@ -385,12 +397,12 @@
   <!-- Nav -->
   <nav>
     <div class="wrap">
-      <span class="nav-logo">// JUngererNZ</span>
+      <span class="nav-logo">jason.json</span>
       <ul class="nav-links">
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="https://github.com/JUngererNZ" target="_blank">GitHub ↗</a></li>
+        <li><a href="#stack">./stack</a></li>
+        <li><a href="#portfolio">./projects</a></li>
+        <li><a href="#about">./about</a></li>
+        <li><a href="https://github.com/JUngererNZ" target="_blank">github ↗</a></li>
       </ul>
     </div>
   </nav>
@@ -398,38 +410,41 @@
   <!-- Hero -->
   <div class="wrap">
     <section class="hero">
-      <p class="hero-tag">&#9632; Infrastructure · Cloud · Automation</p>
-      <h1>Building <em>reliable</em><br>infrastructure at scale.</h1>
+      <div class="hero-tag">
+        <div class="status-pulse"></div>
+        <span>status: online &amp; automating things</span>
+      </div>
+      <h1>Hi, I'm Jason. Let's build something <em>robust</em></h1>
       <p class="hero-bio">
-        IT Operations &amp; Cloud Infrastructure Engineer based in Cape Town, South Africa.
-        I design and operate hybrid cloud environments, automate everything that can be automated,
-        and keep systems compliant, observable, and resilient — from AWS and Azure to on-prem and edge.
+        I’m an <strong>Infrastructure &amp; Cloud Engineer</strong> based in beautiful Paarl, South Africa. 
+        I specialize in keeping massive production clusters happy, orchestrating smart automations, and occasionally 
+        arguing with YAML files. Think of me as the translation layer between complex cloud architecture and smooth daily operations.
       </p>
       <div class="hero-ctas">
-        <a href="#portfolio" class="btn btn-primary">&#9654; View Projects</a>
-        <a href="mailto:jason.ungerer@outlook.com" class="btn btn-ghost">Get in touch</a>
+        <a href="#portfolio" class="btn btn-primary">⚡ See My Code</a>
+        <a href="mailto:jason.ungerer@outlook.com" class="btn btn-ghost">💬 Let's Grab a Coffee</a>
       </div>
     </section>
 
     <!-- Tech Stack -->
     <section id="stack">
-      <p class="section-label reveal">Tech Stack</p>
+      <p class="section-label reveal">Preferred Subsystems</p>
       <div class="stack-grid reveal">
         <div class="stack-pill"><span class="dot"></span>AWS Services</div>
         <div class="stack-pill"><span class="dot"></span>Azure / M365</div>
         <div class="stack-pill"><span class="dot green"></span>Python</div>
         <div class="stack-pill"><span class="dot green"></span>PowerShell</div>
         <div class="stack-pill"><span class="dot"></span>Docker</div>
-        <div class="stack-pill"><span class="dot"></span>n8n Automation</div>
-        <div class="stack-pill"><span class="dot yellow"></span>ISO 27001</div>
-        <div class="stack-pill"><span class="dot yellow"></span>Intune / Entra ID</div>
+        <div class="stack-pill"><span class="dot green"></span>n8n Automation</div>
+        <div class="stack-pill"><span class="dot orange"></span>ISO 27001</div>
+        <div class="stack-pill"><span class="dot orange"></span>Intune / Entra ID</div>
         <div class="stack-pill"><span class="dot green"></span>Local LLMs</div>
       </div>
     </section>
 
      <!-- Portfolio -->
      <section id="portfolio">
-       <p class="section-label reveal">Most Recently Updated Repos</p>
+       <p class="section-label reveal">Live Factory Output (GitHub Repos)</p>
        <div class="repo-grid" id="repo-grid">
          <!-- Repos will be loaded here via JavaScript -->
        </div>
@@ -437,23 +452,23 @@
 
     <!-- About -->
     <section id="about">
-      <p class="section-label reveal">About</p>
+      <p class="section-label reveal">System Properties</p>
       <div class="about-grid reveal">
         <div class="about-item">
-          <div class="about-item-label">Location</div>
-          <div class="about-item-value">Cape Town / Paarl, South Africa</div>
+          <div class="about-item-label">Current Coordinates</div>
+          <div class="about-item-value">Paarl / Cape Town, ZA</div>
         </div>
         <div class="about-item">
-          <div class="about-item-label">Focus</div>
-          <div class="about-item-value">Cloud · Infrastructure · Automation</div>
+          <div class="about-item-label">Core Specialization</div>
+          <div class="about-item-value">Cloud Architecture &amp; CI/CD</div>
         </div>
         <div class="about-item">
-          <div class="about-item-label">Background</div>
-          <div class="about-item-value">IT Operations Manager · Platform Engineer</div>
+          <div class="about-item-label">Operational Framework</div>
+          <div class="about-item-value">Strictly ISO 27001 Mindset</div>
         </div>
         <div class="about-item">
-          <div class="about-item-label">Compliance</div>
-          <div class="about-item-value">ISO 27001-aligned operations</div>
+          <div class="about-item-label">Fueled By</div>
+          <div class="about-item-value">Good Coffee &amp; Python Scripts</div>
         </div>
       </div>
     </section>
@@ -463,7 +478,7 @@
   <!-- Footer -->
   <footer>
     <div class="wrap">
-      <span class="footer-copy">// Jason &mdash; Cape Town, ZA</span>
+      <span class="footer-copy">© 2026 // Made with raw HTML/CSS</span>
        <div class="footer-links">
          <a href="https://github.com/JUngererNZ" target="_blank">GitHub</a>
          <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
@@ -473,6 +488,10 @@
   </footer>
 
    <script>
+     // Console Easter Egg for Nerdy Public
+     console.log("%c👋 Oh, hello fellow engineer! Inspecting my source code? I like you.", "color: #ff6b8b; font-size: 14px; font-weight: bold;");
+     console.log("Feel free to drop me a line at jason.ungerer@outlook.com");
+
      // Scroll-triggered reveal
      const observer = new IntersectionObserver(
        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
@@ -485,36 +504,24 @@
        const repoGrid = document.getElementById('repo-grid');
        if (!repoGrid) return;
 
-       // Show loading state
-       repoGrid.innerHTML = '<p class="repo-card reveal">Loading repositories...</p>';
+       repoGrid.innerHTML = '<p class="repo-card reveal">Querying GitHub API...</p>';
 
        try {
-        // Use the GitHub username from the nav link
-        const username = 'JUngererNZ';
+         const username = 'JUngererNZ';
          const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
          
-         if (!response.ok) {
-           throw new Error(`GitHub API error: ${response.status}`);
-         }
-
+         if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
          const repos = await response.json();
          
          if (repos.length === 0) {
-           repoGrid.innerHTML = '<p class="repo-card reveal">No repositories found</p>';
+           repoGrid.innerHTML = '<p class="repo-card reveal">No public repos found.</p>';
            return;
          }
 
-         // Clear loading state
          repoGrid.innerHTML = '';
 
-         // Create repo cards
          repos.forEach(repo => {
-           // Determine primary language color or use default
-           const langColor = repo.language ? 
-             (repo.language.toLowerCase() === 'python' ? 'green' : 
-              repo.language.toLowerCase() === 'typescript' || repo.language.toLowerCase() === 'javascript' ? '' : 
-              '') : '';
-          
+           const langColor = repo.language && repo.language.toLowerCase() === 'python' ? 'green' : '';
            const tagClass = langColor ? `tag ${langColor}` : 'tag';
            
            const card = document.createElement('a');
@@ -524,29 +531,26 @@
            
            card.innerHTML = `
              <div class="repo-name">
-               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                ${repo.name}
              </div>
-             <p class="repo-desc">${repo.description || 'No description available'}</p>
+             <p class="repo-desc">${repo.description || 'No description provided yet.'}</p>
              <div class="repo-tags">
                ${repo.language ? `<span class="${tagClass}">${repo.language}</span>` : ''}
-               ${repo.topics && repo.topics.length > 0 ? repo.topics.slice(0, 3).map(topic => `<span class="tag">${topic}</span>`).join('') : ''}
-               <span class="tag">Updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
+               <span class="tag">📅 ${new Date(repo.updated_at).toLocaleDateString()}</span>
              </div>
            `;
            
            repoGrid.appendChild(card);
          });
          
-         // Observe newly added elements
          document.querySelectorAll('.repo-card.reveal').forEach(el => observer.observe(el));
        } catch (error) {
          console.error('Error loading GitHub repos:', error);
-         repoGrid.innerHTML = `<p class="repo-card reveal">Error loading repositories: ${error.message}</p>`;
+         repoGrid.innerHTML = `<p class="repo-card reveal">Failed to pull data: ${error.message}</p>`;
        }
      }
 
-     // Load GitHub repositories when page loads
      document.addEventListener('DOMContentLoaded', loadGitHubRepos);
    </script>
 
